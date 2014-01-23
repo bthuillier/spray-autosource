@@ -1,6 +1,9 @@
 package fr.bthuillier.spray.autosources.directives
 
 import spray.routing.Directives._
+import play.api.libs.json._
+import spray.routing.Route
+
 /**
  *
  * User: benjaminthuillier
@@ -9,16 +12,19 @@ import spray.routing.Directives._
  *
  */
 trait AutosourcesDirectives {
-  def autosource(prefix: String) = pathPrefix(prefix) {
+  def autosource[T](prefix: String, obj: T)(implicit format: Format[T]): Route = pathPrefix(prefix) {
+    import spray.httpx.PlayJsonSupport._
     get {
-      complete("ok") } ~
+      complete(obj) } ~
     post {
-      complete("ok") } ~
+      entity(as[T]) { t =>
+      complete(t) }} ~
     path(Segment) { id =>
       get {
-        complete("ok") } ~
+        complete(obj) } ~
       delete {
-        complete("ok") } ~
+        complete(Json.obj("id" -> id)) } ~
       put {
-        complete("ok") }}}
+        entity(as[T]) { t =>
+        complete(t) }}}}
 }
