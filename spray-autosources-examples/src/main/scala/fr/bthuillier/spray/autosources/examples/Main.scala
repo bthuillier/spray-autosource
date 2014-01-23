@@ -15,7 +15,6 @@ import play.api.libs.json.{Format, Json}
 object Main extends App with SimpleRoutingApp with AutosourcesDirectives {
   implicit val system = ActorSystem("my-system")
 
-
   startServer(interface = "localhost", port = 8080) {
     autosource("user", User(1, "name"))
   }
