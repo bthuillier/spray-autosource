@@ -20,4 +20,5 @@ object Dependencies {
   val playJson      = "com.typesafe.play" %%  "play-json"     % "2.2.0"
   val sprayCan      = "io.spray"          %  "spray-can"     % "1.2.0"
   val sprayRouting  = "io.spray"          %  "spray-routing" % "1.2.0"
+  val reactiveMongo = "org.reactivemongo" %% "reactivemongo" % "0.10.0"
 }

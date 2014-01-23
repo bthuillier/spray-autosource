@@ -13,7 +13,7 @@ object Build extends Build {
   lazy val sprayAutosources = Project("spray-autosources", file("spray-autosources"))
     .settings(basicSettings: _*)
     .settings(libraryDependencies ++=
-      provided(akkaActor, sprayCan, sprayRouting, playJson) ++
+      provided(akkaActor, sprayCan, sprayRouting, playJson, reactiveMongo) ++
       test(specs2)
   )
 
@@ -22,7 +22,7 @@ object Build extends Build {
     .dependsOn(sprayAutosources)
     .settings(exampleSettings: _*)
     .settings(libraryDependencies ++=
-      compile(sprayCan, sprayRouting, akkaActor, playJson) 
+      compile(sprayCan, sprayRouting, akkaActor, playJson, reactiveMongo)
   )
 
   
